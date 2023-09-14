@@ -1,6 +1,7 @@
 SET(PROJECT_NAME project) # Set project name here
 
 # If you don't know what you are doing... DO **NOT** EDIT BELOW THIS LINE
+SET(DRIVERS_ROOT_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../../drivers)
 
 # Add the 'Modules' folder to the search path for CMake/Modules/FindXXX.cmake files
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/Modules)
@@ -44,7 +45,16 @@ FILE(GLOB PROJECT_MAIN ${CMAKE_CURRENT_SOURCE_DIR}/project/main.c) # main routin
 # Create executable
 ADD_EXECUTABLE(${BINARY_NAME} ${PROJECT_MAIN} ${PROJECT_SOURCES} ${PLATFORM_SOURCES})
 
+# Platform-specific target configuration (e.g., linker script)
 INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/CMake/Target/${PLATFORM}.cmake)
+
+# Flash target (only if OpenOCD configuration file is specified)
+IF(DEFINED OPENOCD_CONFIG_FILE)
+    ADD_CUSTOM_TARGET(${PROJECT_NAME}-flash
+        DEPENDS ${BINARY_NAME}
+        COMMAND ${OPENOCD_EXECUTABLE} -f ${OPENOCD_CONFIG_FILE} -c "program ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${BINARY_NAME} verify reset exit"
+        COMMENT "Flashing ${BINARY_NAME} to target")
+ENDIF()
 
 # Unit tests (only for native platform)
 IF(PLATFORM STREQUAL "native")

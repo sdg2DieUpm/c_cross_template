@@ -8,6 +8,7 @@ If you are a user of the project and value your sanity, you should not need to r
 
 - `Ld`: Linker files (`.ld`) for different targets.
 - `Modules`: CMake modules for finding packages.
+- `OpenOCD`: OpenOCD configuration files for different targets.
 - `Setup`: CMake modules for setting up the build environment (toolchains, compilation flags, ...).
 - `Target`: CMake modules for completing the target builds (linker configuration, post-build commands...).
 - `Toolchains`: CMake toolchain files for different targets.

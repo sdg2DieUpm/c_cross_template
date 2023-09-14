@@ -1,0 +1,101 @@
+{
+    "configurations": [
+        {
+            "name": "win32-native",
+            "includePath": [
+                "${workspaceFolder}/project/**",
+                "${workspaceFolder}/project/common/**",
+                "${workspaceFolder}/project/common/include/",
+                "${workspaceFolder}/project/port/native/**",
+                "${workspaceFolder}/project/port/native/include/"
+            ],
+            "defines": [],
+            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        },
+        {
+            "name": "win32-stm32f446re",
+            "includePath": [
+                "${workspaceFolder}/../../drivers/stm32f4xx/**",
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/**",
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/include/",
+                "${workspaceFolder}/project/common/**",
+                "${workspaceFolder}/project/common/include/"
+            ],
+            "defines": [
+                "STM32F446xx"
+            ],
+            "compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\11.3 rel1\\bin\\arm-none-eabi-gcc.exe",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-arm"
+        },
+        {
+            "name": "linux-native",
+            "includePath": [
+                "${workspaceFolder}/project/**",
+                "${workspaceFolder}/project/common/**",
+                "${workspaceFolder}/project/common/include/",
+                "${workspaceFolder}/project/port/native/**",
+                "${workspaceFolder}/project/port/native/include/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "linux-stm32f446re",
+            "includePath": [
+                "${workspaceFolder}/../../drivers/stm32f4xx/**",
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/**",
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/include/",
+                "${workspaceFolder}/project/common/**",
+                "${workspaceFolder}/project/common/include/"
+            ],
+            "defines": [
+                "STM32F446xx"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-arm"
+        },
+        {
+            "name": "macos-native",
+            "includePath": [
+                "${workspaceFolder}/project/common/**",
+                "${workspaceFolder}/project/common/include/",
+                "${workspaceFolder}/project/port/native/**",
+                "${workspaceFolder}/project/port/native/include/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "macos-gcc-x64"
+        },
+        {
+            "name": "macos-stm32f446re",
+            "includePath": [
+                "${workspaceFolder}/../../drivers/stm32f4xx/**",
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/**",
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/include/",
+                "${workspaceFolder}/project/common/**",
+                "${workspaceFolder}/project/common/include/"
+            ],
+            "defines": [
+                "STM32F446xx"
+            ],
+            // "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "compilerPath": "/usr/local/bin/arm-none-eabi-gcc", // For those in MacOS who installed the toolchain via homebrew
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "macos-gcc-arm"
+        }
+    ],
+    "version": 4
+}

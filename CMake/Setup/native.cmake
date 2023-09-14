@@ -1,12 +1,12 @@
 # SETUP FOR NATIVE COMPILATION. NO SPECIAL TOOLCHAIN FILE IS REQUIRED
 
 # File extension
-if(win32)
-    set(PLATFORM_EXTENSION ".exe")
-else()
-    set(PLATFORM_EXTENSION "")
-endif()
+IF(WIN32)
+    SET(PLATFORM_EXTENSION ".exe")
+ELSE()
+    SET(PLATFORM_EXTENSION "")
+ENDIF()
 # Platform-specific source files
-set(PLATFORM_SOURCES "")
+SET(PLATFORM_SOURCES "")
 # Platform-specific directories with header files
-set(PLATFORM_INCLUDE_DIRS "")
+SET(PLATFORM_INCLUDE_DIRS "")
