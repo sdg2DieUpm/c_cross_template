@@ -1,27 +1,21 @@
-/**
- * @file main.c
- * @brief Main file on basic project for C in VSCode.
- *
- * Dummy project that prints a Hello World to test that it works.
- *
- * The code is mainly an explanation of each one of the points mentioned above. Oriented to the
- * introduction of C to the students of Sistemas Digitales of the ETSI Telecomunicacion UPM.
- *
- * @author Josué Pagán <j.pagan@upm.es>
- * @date 2022-09-11
- *
- */
-
-#include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
+#include "port_system.h"
+#include "port_blink.h"
 
-/**
- * @brief Main function of the project "hello". Entry point of the program.
- *
- * @return int32_t
- */
-int32_t main()
+#define BLINK_T_MS 1000
+
+int main()
 {
-    printf("Hello World!\n");
+    port_system_init();                 // inicializamos el sistema
+    while (port_blink_gpio_setup()) {}; // Configuramos el GPIO para el LED
+
+    uint32_t t = port_system_get_millis(); // en t llevamos cuenta del tiempo actual
+    while (1)
+    {
+        port_blink_toggle_board_led(); // Hacemos parpadear el LED
+        port_system_delay_until_ms(&t, BLINK_T_MS / 2); // Y esperamos el periodo de la FSM
+    }
     return 0;
 }
