@@ -30,7 +30,7 @@ FILE(GLOB STM32F4xx_SOURCES
     ${STM32F4xx_DRIVERS_DIR}/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s
 )
 
-find_package(PackageHandleStandardArgs)
-find_package_handle_standard_args(STM32F4xx DEFAULT_MSG
+FIND_PACKAGE(PackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(STM32F4xx DEFAULT_MSG
     STM32F4xx_INCLUDE_DIRS
     STM32F4xx_SOURCES)

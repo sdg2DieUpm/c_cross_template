@@ -4,6 +4,7 @@
             "name": "win32-native",
             "includePath": [
                 "${workspaceFolder}/project/**",
+                "${workspaceFolder}/unity/src**",
                 "${workspaceFolder}/project/common/**",
                 "${workspaceFolder}/project/common/include/",
                 "${workspaceFolder}/project/port/native/**",
@@ -36,6 +37,7 @@
             "name": "linux-native",
             "includePath": [
                 "${workspaceFolder}/project/**",
+                "${workspaceFolder}/unity/src**",
                 "${workspaceFolder}/project/common/**",
                 "${workspaceFolder}/project/common/include/",
                 "${workspaceFolder}/project/port/native/**",
@@ -67,6 +69,8 @@
         {
             "name": "macos-native",
             "includePath": [
+                "${workspaceFolder}/project/**",
+                "${workspaceFolder}/unity/src**",
                 "${workspaceFolder}/project/common/**",
                 "${workspaceFolder}/project/common/include/",
                 "${workspaceFolder}/project/port/native/**",
