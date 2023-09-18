@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "port_system.h"
 #include "port_led.h"
+#include <fsm.h>
 
 #define BLINK_T_MS 1000
 
