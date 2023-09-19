@@ -25,4 +25,4 @@ uint32_t port_system_get_millis(void);
 void port_system_delay_ms(uint32_t ms);
 void port_system_delay_until_ms(uint32_t *t, uint32_t ms);
 
-#endif /* PORT_SYSTEM_H_ */
+#endif // PORT_SYSTEM_H_

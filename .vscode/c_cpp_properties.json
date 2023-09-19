@@ -1,17 +1,22 @@
 {
+    "env": {
+        "SDGWorkspaceFolder": "${workspaceFolder}/../..", // Path to the SDG workspace folder
+        "stm32f446reIncludePath": [
+            "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+            "${workspaceFolder}/project/**", // Path to the project sources
+            "${SDGWorkspaceFolder}/drivers/stm32f4xx/**" // Path to the STM32F4xx CMSIS and HAL drivers
+        ]
+    },
     "configurations": [
         {
             "name": "win32-native",
             "includePath": [
-                "${workspaceFolder}/project/**",
-                "${workspaceFolder}/unity/src**",
-                "${workspaceFolder}/project/common/**",
-                "${workspaceFolder}/project/common/include/",
-                "${workspaceFolder}/project/port/native/**",
-                "${workspaceFolder}/project/port/native/include/"
+                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${workspaceFolder}/project/common/**", // Path to the project common sources
+                "${workspaceFolder}/project/port/native/**" // Path to the project port sources
             ],
             "defines": [],
-            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe", // Path to Windows native compiler
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "windows-gcc-x64"
@@ -19,16 +24,15 @@
         {
             "name": "win32-stm32f446re",
             "includePath": [
-                "${workspaceFolder}/../../drivers/stm32f4xx/**",
-                "${workspaceFolder}/project/port/nucleo_stm32f446re/**",
-                "${workspaceFolder}/project/port/nucleo_stm32f446re/include/",
-                "${workspaceFolder}/project/common/**",
-                "${workspaceFolder}/project/common/include/"
+                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${workspaceFolder}/project/common/**", // Path to the project common sources
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/**" // Path to the project port sources
             ],
             "defines": [
                 "STM32F446xx"
             ],
-            "compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\11.3 rel1\\bin\\arm-none-eabi-gcc.exe",
+            "compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\11.3 rel1\\bin\\arm-none-eabi-gcc.exe", // Path to Windows arm-none-eabi cross compiler
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "windows-gcc-arm"
@@ -36,12 +40,9 @@
         {
             "name": "linux-native",
             "includePath": [
-                "${workspaceFolder}/project/**",
-                "${workspaceFolder}/unity/src**",
-                "${workspaceFolder}/project/common/**",
-                "${workspaceFolder}/project/common/include/",
-                "${workspaceFolder}/project/port/native/**",
-                "${workspaceFolder}/project/port/native/include/"
+                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${workspaceFolder}/project/common/**", // Path to the project common sources
+                "${workspaceFolder}/project/port/native/**" // Path to the project port sources
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
@@ -52,11 +53,10 @@
         {
             "name": "linux-stm32f446re",
             "includePath": [
-                "${workspaceFolder}/../../drivers/stm32f4xx/**",
-                "${workspaceFolder}/project/port/nucleo_stm32f446re/**",
-                "${workspaceFolder}/project/port/nucleo_stm32f446re/include/",
-                "${workspaceFolder}/project/common/**",
-                "${workspaceFolder}/project/common/include/"
+                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${workspaceFolder}/project/common/**", // Path to the project common sources
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/**" // Path to the project port sources
             ],
             "defines": [
                 "STM32F446xx"
@@ -69,12 +69,9 @@
         {
             "name": "macos-native",
             "includePath": [
-                "${workspaceFolder}/project/**",
-                "${workspaceFolder}/unity/src**",
-                "${workspaceFolder}/project/common/**",
-                "${workspaceFolder}/project/common/include/",
-                "${workspaceFolder}/project/port/native/**",
-                "${workspaceFolder}/project/port/native/include/"
+                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${workspaceFolder}/project/common/**", // Path to the project common sources
+                "${workspaceFolder}/project/port/native/**" // Path to the project port sources
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
@@ -85,16 +82,15 @@
         {
             "name": "macos-stm32f446re",
             "includePath": [
-                "${workspaceFolder}/../../drivers/stm32f4xx/**",
-                "${workspaceFolder}/project/port/nucleo_stm32f446re/**",
-                "${workspaceFolder}/project/port/nucleo_stm32f446re/include/",
-                "${workspaceFolder}/project/common/**",
-                "${workspaceFolder}/project/common/include/"
+                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${workspaceFolder}/project/common/**", // Path to the project common sources
+                "${workspaceFolder}/project/port/nucleo_stm32f446re/**" // Path to the project port sources
             ],
             "defines": [
                 "STM32F446xx"
             ],
-            // "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            // "compilerPath": "/usr/bin/arm-none-eabi-gcc", // For those in MacOS who installed the toolchain from arm
             "compilerPath": "/usr/local/bin/arm-none-eabi-gcc", // For those in MacOS who installed the toolchain via homebrew
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",

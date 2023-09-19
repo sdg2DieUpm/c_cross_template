@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "CMake native",
+			"label": "Run CMake",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -12,14 +12,15 @@
 			},
 			"command": "cmake",
 			"args": [
-				"-Bbuild/native",
-				"-DPLATFORM=native",
+				"-Bbuild/${input:platformID}",
+				"-DPLATFORM=${input:platformID}",
+				"-DCMAKE_BUILD_TYPE=${input:buildType}",
 			]
 		},
 		{
-			"label": "Build all native",
+			"label": "Build",
 			"dependsOn": [
-				"CMake native"
+				"Run CMake"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -37,28 +38,14 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/native",
+				"-Cbuild/${input:platformID}",
+				"${input:targetID}",
 			]
 		},
 		{
-			"label": "CMake nucleo_stm32F446re",
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"command": "cmake",
-			"args": [
-				"-Bbuild/nucleo_stm32F446re",
-				"-DPLATFORM=nucleo_stm32F446re",
-			]
-		},
-		{
-			"label": "Build all nucleo_stm32F446re",
+			"label": "Flash",
 			"dependsOn": [
-				"CMake nucleo_stm32F446re"
+				"Run CMake"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -76,63 +63,56 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/nucleo_stm32F446re",
+				"-Cbuild/${input:platformID}",
+				"${input:targetID}-flash",
 			]
 		},
 		{
-			"label": "Clean",
-			"command": "make",
+			"label": "Run Tests",
+			"dependsOn": [
+				"Run CMake"
+			],
 			"options": {
-				"cwd": "${workspaceRoot}"
+				"cwd": "${workspaceRoot}",
+				"${input:platformID}": "native"
 			},
-			"linux": {
-				"command": "make"
+			"group": {
+				"kind": "test"
 			},
-			"osx": {
-				"command": "make"
-			},
-			"windows": {
-				"command": "mingw32-make"
-			},
+			"command": "ctest",
 			"args": [
-				"clean"
+				"--test-dir",
+				"build/${input:platformID}",
+				"--output-on-failure",
+			]
+		}
+	],
+	"inputs": [
+		{
+			"id": "platformID",
+			"type": "pickString",
+			"description": "Enter the platform:",
+			"default": "native",
+			"options": [
+				"native",
+				"nucleo_stm32f446re"
 			]
 		},
 		{
-			"label": "Clean & Re-Build NUCLEO_STM32F446RE",
-			"dependsOn": [
-				"Clean",
-				"Build NUCLEO_STM32F446RE"
-			],
-			"dependsOrder": "sequence"
+			"id": "targetID",
+			"type": "promptString",
+			"description": "Enter the target:",
+			"default": "all"
 		},
 		{
-			"label": "Clean & Re-Build PC",
-			"dependsOn": [
-				"Clean",
-				"Build PC"
-			],
-			"dependsOrder": "sequence"
-		},
-		{
-			"label": "Flash NUCLEO_STM32F446RE",
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-			"linux": {
-				"command": "make"
-			},
-			"osx": {
-				"command": "make"
-			},
-			"windows": {
-				"command": "mingw32-make"
-			},
-			"args": [
-				"flash",
-				"PLATFORM=nucleo_stm32f446re"
-			],
-			"problemMatcher": []
+			"id": "buildType",
+			"type": "pickString",
+			"description": "Enter the build type:",
+			"default": "Debug",
+			"options": [
+				"Debug",
+				"Release"
+			]
 		}
 	]
 }

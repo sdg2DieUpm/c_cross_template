@@ -19,6 +19,7 @@ SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter"
 
 # Build type-specific flags
 IF(NOT CMAKE_BUILD_TYPE)
+    MESSAGE(STATUS "No build type selected, default to Debug")
     SET(CMAKE_BUILD_TYPE Debug)
 ENDIF()
 SET(CMAKE_C_FLAGS_DEBUG "-g -O0")

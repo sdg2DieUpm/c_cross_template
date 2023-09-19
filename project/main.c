@@ -5,11 +5,11 @@
 #include "port_led.h"
 #include <fsm.h>
 
-#define BLINK_T_MS 1000
+#define BLINK_T_MS 2000
 
 int main()
 {
-    port_system_init();                 // inicializamos el sistema
+    port_system_init();               // inicializamos el sistema
     while (port_led_gpio_setup()) {}; // Configuramos el GPIO para el LED
 
     uint32_t t = port_system_get_millis(); // en t llevamos cuenta del tiempo actual
