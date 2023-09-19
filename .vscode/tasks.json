@@ -10,7 +10,22 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"command": "cmake",
+			//"command": "cmake",
+			"linux": {
+				"command": "cmake"
+			},
+			"osx": {
+				"command": "cmake"
+			},
+			"windows": {
+				"command": "cmake",
+				"args": [
+					"-Bbuild/${input:platformID}",
+					"-DPLATFORM=${input:platformID}",
+					"-DCMAKE_BUILD_TYPE=${input:buildType}",
+					"-G \"MinGW Makefiles\"",
+				]
+			},
 			"args": [
 				"-Bbuild/${input:platformID}",
 				"-DPLATFORM=${input:platformID}",
@@ -20,7 +35,7 @@
 		{
 			"label": "Build",
 			"dependsOn": [
-				"Run CMake"
+				//"Run CMake"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
