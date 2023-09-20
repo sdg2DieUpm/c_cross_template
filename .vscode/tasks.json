@@ -10,27 +10,21 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			//"command": "cmake",
-			"linux": {
-				"command": "cmake"
-			},
-			"osx": {
-				"command": "cmake"
-			},
+			"command": "cmake",
+			"args": [
+				"-Bbuild-${input:buildType}/${input:platformID}",
+				"-DPLATFORM=${input:platformID}",
+				"-DCMAKE_BUILD_TYPE=${input:buildType}",
+			],
 			"windows": {
 				"command": "cmake",
 				"args": [
-					"-Bbuild/${input:platformID}",
+					"-Bbuild-${input:buildType}/${input:platformID}",
 					"-DPLATFORM=${input:platformID}",
 					"-DCMAKE_BUILD_TYPE=${input:buildType}",
 					"-G \"MinGW Makefiles\"",
 				]
-			},
-			"args": [
-				"-Bbuild/${input:platformID}",
-				"-DPLATFORM=${input:platformID}",
-				"-DCMAKE_BUILD_TYPE=${input:buildType}",
-			]
+			}
 		},
 		{
 			"label": "Build",
@@ -53,7 +47,7 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/${input:platformID}",
+				"-Cbuild-${input:buildType}/${input:platformID}",
 				"${input:targetID}",
 			]
 		},
@@ -78,7 +72,7 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/${input:platformID}",
+				"-Cbuild-${input:buildType}/${input:platformID}",
 				"${input:targetID}-flash",
 			]
 		},
@@ -97,7 +91,7 @@
 			"command": "ctest",
 			"args": [
 				"--test-dir",
-				"build/${input:platformID}",
+				"build-${input:buildType}/${input:platformID}",
 				"--output-on-failure",
 			]
 		}
