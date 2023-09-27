@@ -29,7 +29,7 @@
 		{
 			"label": "Build",
 			"dependsOn": [
-				//"Run CMake"
+				"Run CMake"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -37,12 +37,7 @@
 			"group": {
 				"kind": "build"
 			},
-			"linux": {
-				"command": "make"
-			},
-			"osx": {
-				"command": "make"
-			},
+			"command": "make",
 			"windows": {
 				"command": "mingw32-make"
 			},
@@ -54,7 +49,7 @@
 		{
 			"label": "Flash",
 			"dependsOn": [
-				"Run CMake"
+				"Build"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -62,12 +57,7 @@
 			"group": {
 				"kind": "build"
 			},
-			"linux": {
-				"command": "make"
-			},
-			"osx": {
-				"command": "make"
-			},
+			"command": "make",
 			"windows": {
 				"command": "mingw32-make"
 			},
@@ -79,7 +69,7 @@
 		{
 			"label": "Run Tests",
 			"dependsOn": [
-				"Run CMake"
+				"Build"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}",
