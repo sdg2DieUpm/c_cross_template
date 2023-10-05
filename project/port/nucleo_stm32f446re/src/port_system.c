@@ -92,19 +92,6 @@ void HAL_MspInit(void)
 }
 
 //------------------------------------------------------
-// FUNCIÓN PARA QUE PRINTF FUNCIONE VIA ITM
-//------------------------------------------------------
-int _write(int file, char *ptr, int len)
-{
-  /* Implement your write code here, this is used by puts and printf for example */
-  (void) file;
-  int i = 0;
-  for (i = 0; i < len; i++)
-    ITM_SendChar((*ptr++));
-  return len;
-}
-
-//------------------------------------------------------
 // SUBRUTINAS DE ATENCION A LAS INTERRUPCION
 //------------------------------------------------------
 /**
