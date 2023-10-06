@@ -1,5 +1,5 @@
 #include "port_system.h"
-#include "stm32f4xx_hal.h" //  ROMAN dejaría el import aqui escondido
+#include "stm32f4xx_hal.h"
 
 /**
  * @brief System Clock Configuration

@@ -19,10 +19,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-/* Includes de la placa */
-#include "stm32f4xx_hal.h"  // ROMAN yo quitaría esto de aqui y lo importaría allí donde fuera necesario
-
-
 size_t port_system_init(void);
 uint32_t port_system_get_millis(void);
 void port_system_delay_ms(uint32_t ms);

@@ -7,7 +7,7 @@
     {
       "name": "Debug device STM32F446RE",
       "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin-debug/nucleo_stm32f446re/${input:targetID}.elf",
+      "executable": "${workspaceFolder}/bin-Debug/nucleo_stm32f446re/${input:targetID}.elf",
       "request": "launch",
       "runToEntryPoint": "main",
       "type": "cortex-debug",

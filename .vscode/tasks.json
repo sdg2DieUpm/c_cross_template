@@ -12,14 +12,13 @@
 			},
 			"command": "cmake",
 			"args": [
-				"-Bbuild-debug/nucleo_stm32f446re",
+				"-Bbuild-Debug/nucleo_stm32f446re",
 				"-DPLATFORM=nucleo_stm32f446re",
 				"-DCMAKE_BUILD_TYPE=Debug",
 			],
 			"windows": {
-				"command": "cmake",
 				"args": [
-					"-Bbuild-debug/nucleo_stm32f446re",
+					"-Bbuild-Debug/nucleo_stm32f446re",
 					"-DPLATFORM=nucleo_stm32f446re",
 					"-DCMAKE_BUILD_TYPE=Debug",
 					"-G \"MinGW Makefiles\"",
@@ -42,7 +41,7 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild-debug/nucleo_stm32f446re",
+				"-Cbuild-Debug/nucleo_stm32f446re",
 				"${input:cortexTargetID}",
 			]
 		},
@@ -62,7 +61,6 @@
 				"-DCMAKE_BUILD_TYPE=${input:buildType}",
 			],
 			"windows": {
-				"command": "cmake",
 				"args": [
 					"-Bbuild-${input:buildType}/${input:platformID}",
 					"-DPLATFORM=${input:platformID}",
