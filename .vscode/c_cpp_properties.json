@@ -90,8 +90,8 @@
             "defines": [
                 "STM32F446xx"
             ],
-            // "compilerPath": "/usr/bin/arm-none-eabi-gcc", // For those in MacOS who installed the toolchain from arm
-            "compilerPath": "/usr/local/bin/arm-none-eabi-gcc", // For those in MacOS who installed the toolchain via homebrew
+            // "compilerPath": "/opt/local/bin/arm-none-eabi-gcc", // For Intel users
+            "compilerPath": "/opt/homebrew/bin/arm-none-eabi-gcc", // For Apple Silicon users
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "macos-gcc-arm"

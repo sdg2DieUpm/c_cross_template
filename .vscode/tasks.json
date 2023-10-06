@@ -2,6 +2,51 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Run CMake (cortex-debug only)",
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"command": "cmake",
+			"args": [
+				"-Bbuild-debug/nucleo_stm32f446re",
+				"-DPLATFORM=nucleo_stm32f446re",
+				"-DCMAKE_BUILD_TYPE=Debug",
+			],
+			"windows": {
+				"command": "cmake",
+				"args": [
+					"-Bbuild-debug/nucleo_stm32f446re",
+					"-DPLATFORM=nucleo_stm32f446re",
+					"-DCMAKE_BUILD_TYPE=Debug",
+					"-G \"MinGW Makefiles\"",
+				]
+			}
+		},
+		{
+			"label": "Build (cortex-debug only)",
+			"dependsOn": [
+				"Run CMake (cortex-debug only)"
+			],
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build"
+			},
+			"command": "make",
+			"windows": {
+				"command": "mingw32-make"
+			},
+			"args": [
+				"-Cbuild-debug/nucleo_stm32f446re",
+				"${input:cortexTargetID}",
+			]
+		},
+		{
 			"label": "Run CMake",
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -112,6 +157,12 @@
 				"Debug",
 				"Release"
 			]
-		}
+		},
+		{
+			"id": "cortexTargetID",
+			"type": "command",
+			"command": "extension.commandvariable.rememberPick",
+      		"args": { "key": "lasttarget" }
+		},
 	]
 }
