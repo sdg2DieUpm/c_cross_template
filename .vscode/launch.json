@@ -1,7 +1,7 @@
 {
   "version": "0.2.0",
   "env": {
-    "SDGWorkspaceFolder": "${workspaceFolder}/../workspace"
+    "SDGWorkspaceFolder": "${workspaceFolder}/../.."
   },
   "configurations": [
     {
