@@ -18,10 +18,10 @@
 			],
 			"windows": {
 				"args": [
+					"-G", "MinGW Makefiles",
 					"-Bbuild-Debug/nucleo_stm32f446re",
 					"-DPLATFORM=nucleo_stm32f446re",
 					"-DCMAKE_BUILD_TYPE=Debug",
-					"-G \"MinGW Makefiles\"",
 				]
 			}
 		},
@@ -62,10 +62,10 @@
 			],
 			"windows": {
 				"args": [
+					"-G", "MinGW Makefiles",
 					"-Bbuild-${input:buildType}/${input:platformID}",
 					"-DPLATFORM=${input:platformID}",
 					"-DCMAKE_BUILD_TYPE=${input:buildType}",
-					"-G \"MinGW Makefiles\"",
 				]
 			}
 		},
@@ -159,7 +159,7 @@
 		{
 			"id": "cortexTargetID",
 			"type": "command",
-			"command": "extension.commandvariable.rememberPick",
+			"command": "extension.c",
       		"args": { "key": "lasttarget" }
 		},
 	]
