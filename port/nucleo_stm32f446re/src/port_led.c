@@ -1,5 +1,6 @@
 #include "port_led.h"
 #include "port_system.h"
+#include "stm32f4xx_hal.h"
 
 // HW Nucleo-STM32F446RE:
 #define LD2_Pin GPIO_PIN_5

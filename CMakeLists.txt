@@ -24,19 +24,19 @@ ENDIF()
 SET(CMAKE_C_FLAGS_DEBUG "-g -O0")
 SET(CMAKE_C_FLAGS_RELEASE "-O3")
 
-SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin-${CMAKE_BUILD_TYPE}/${PLATFORM})
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${PLATFORM}/${CMAKE_BUILD_TYPE})
 
 # Include directories with header files
 SET(PROJECT_INCLUDE_DIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}/project/common/include            # project library (common)
-    ${CMAKE_CURRENT_SOURCE_DIR}/project/port/${PLATFORM}/include) # project library (port)
+    ${CMAKE_CURRENT_SOURCE_DIR}/common/include            # project library (common)
+    ${CMAKE_CURRENT_SOURCE_DIR}/port/${PLATFORM}/include) # project library (port)
 INCLUDE_DIRECTORIES(${PROJECT_INCLUDE_DIRS} ${PLATFORM_INCLUDE_DIRS})
 
 # Source files
 FILE(GLOB PROJECT_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/project/common/src/*.c             # project library (common)
-    ${CMAKE_CURRENT_SOURCE_DIR}/project/port/${PLATFORM}/src/*.c)  # project library (port)
-FILE(GLOB PROJECT_MAIN ${CMAKE_CURRENT_SOURCE_DIR}/project/main.c) # main routine
+    ${CMAKE_CURRENT_SOURCE_DIR}/common/src/*.c             # project library (common)
+    ${CMAKE_CURRENT_SOURCE_DIR}/port/${PLATFORM}/src/*.c)  # project library (port)
+FILE(GLOB PROJECT_MAIN ${CMAKE_CURRENT_SOURCE_DIR}/main.c) # main routine
 
 # Create project executable
 ADD_EXECUTABLE(${PROJECT_NAME} ${PROJECT_MAIN} ${PROJECT_SOURCES})
@@ -48,7 +48,7 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME} fsm)
 
 # Flash project to target (only if OpenOCD configuration file is specified)
 IF(DEFINED OPENOCD_CONFIG_FILE)
-    ADD_CUSTOM_TARGET(${PROJECT_NAME}-flash
+    ADD_CUSTOM_TARGET(flash-${PROJECT_NAME}
         DEPENDS ${PROJECT_NAME}
         COMMAND ${OPENOCD_EXECUTABLE} -f ${OPENOCD_CONFIG_FILE} -c "program ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}${PLATFORM_EXTENSION} verify reset exit"
         COMMENT "Flashing ${PROJECT_NAME} to target")
@@ -67,7 +67,7 @@ FOREACH(TEST_MAIN ${HW_TEST})
 
     # Flash hardware test to target (only if OpenOCD configuration file is specified)
     IF(DEFINED OPENOCD_CONFIG_FILE)
-        ADD_CUSTOM_TARGET(${TEST_NAME}-flash
+        ADD_CUSTOM_TARGET(flash-${TEST_NAME}
             DEPENDS ${TEST_NAME}
             COMMAND ${OPENOCD_EXECUTABLE} -f ${OPENOCD_CONFIG_FILE} -c "program ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TEST_NAME}${PLATFORM_EXTENSION} verify reset exit"
             COMMENT "Flashing ${TEST_NAME} to target")
