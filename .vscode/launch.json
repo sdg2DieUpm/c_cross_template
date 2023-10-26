@@ -1,8 +1,5 @@
 {
   "version": "0.2.0",
-  "env": {
-    "SDGWorkspaceFolder": "${workspaceFolder}/../.."
-  },
   "configurations": [
     {
       "name": "Debug device STM32F446RE",
@@ -14,10 +11,10 @@
       "servertype": "openocd",
       "device": "STM32F446RE",
       "configFiles": [
-        "${SDGWorkspaceFolder}/openocd/stm32f4x.cfg"
+        "${workspaceFolder}/../../openocd/stm32f4x.cfg"
       ],
       "preLaunchTask": "Build (nucleo_stm32f446re, debug)",
-      "svdFile": "${SDGWorkspaceFolder}/svd/STM32F446.svd",
+      "svdFile": "${workspaceFolder}/../../svd/STM32F446.svd",
       "swoConfig": {
         "enabled": true,
         "cpuFrequency": 16000000,
