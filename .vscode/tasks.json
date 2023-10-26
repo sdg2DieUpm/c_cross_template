@@ -46,6 +46,56 @@
 			]
 		},
 		{
+			"label": "Flash (nucleo_stm32f446re, debug)",
+			"dependsOn": [
+				"Build (nucleo_stm32f446re, debug)"
+			],
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build"
+			},
+			"command": "make",
+			"windows": {
+				"command": "mingw32-make"
+			},
+			"args": [
+				"-Cbuild/nucleo_stm32f446re/Debug",
+				"flash-${input:cortexTargetID}",
+			]
+		},
+		{
+			"label": "Clean (nucleo_stm32f446re, debug)",
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build"
+			},
+			"command": "make",
+			"windows": {
+				"command": "mingw32-make"
+			},
+			"args": [
+				"-Cbuild/nucleo_stm32f446re/Debug",
+				"clean",
+			]
+		},
+		{
+			"label": "Clean and flash (nucleo_stm32f446re, debug)",
+			"dependsOn": [
+				"Clean (nucleo_stm32f446re, debug)",
+				"Flash (nucleo_stm32f446re, debug)"
+			],
+			"group": {
+				"kind": "build"
+			},
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+		},
+		{
 			"label": "Run CMake (advanced)",
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -106,7 +156,7 @@
 			},
 			"args": [
 				"-Cbuild/${input:platformID}/${input:buildType}",
-				"$flash-{input:targetID}",
+				"flash-${input:targetID}",
 			]
 		},
 		{

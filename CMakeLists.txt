@@ -1,10 +1,15 @@
-# IF YOU DON'T KNOW WHAT YOU ARE DOING, DO **NOT** EDIT THIS FILE
+SET(PROJECT_NAME project) # set it to your project name
+SET(WORKSPACE_ROOT_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../..) # set it to your workspace root directory
+SET(USE_FSM true) # set it to true to use FSM library
+SET(USE_HAL true) # set it to true to use HAL library
+IF(NOT PLATFORM)
+    MESSAGE(STATUS "No platform selected, using default. You can override it by passing -DPLATFORM=<platform> to cmake")
+    SET(PLATFORM "nucleo_stm32f446re") # set it to your default plaftorm
+ENDIF()
 
-# Project name
-SET(PROJECT_NAME project)
-
-# Path to drivers directory
-SET(WORKSPACE_ROOT_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+########################################################################################
+## IF YOU DON'T KNOW WHAT YOU ARE DOING, DO **NOT** EDIT THIS FILE FROM THIS POINT ON ##
+########################################################################################
 
 # Load platform-specific setup configuration (e.g., toolchain and libraries)
 INCLUDE(${WORKSPACE_ROOT_DIR}/CMakeLists.txt)
@@ -43,8 +48,12 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${PROJECT_MAIN} ${PROJECT_SOURCES})
 IF(DEFINED PLATFORM_EXTENSION)
     SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES SUFFIX ${PLATFORM_EXTENSION})
 ENDIF()
-# Link project executable with all the libraries required
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} fsm)
+IF(USE_FSM)
+    TARGET_LINK_LIBRARIES(${PROJECT_NAME} fsm)
+ENDIF()
+IF(USE_HAL)
+    TARGET_LINK_LIBRARIES(${PROJECT_NAME} hal)
+ENDIF()
 
 # Flash project to target (only if OpenOCD configuration file is specified)
 IF(DEFINED OPENOCD_CONFIG_FILE)
@@ -62,8 +71,12 @@ FOREACH(TEST_MAIN ${HW_TEST})
     IF(DEFINED PLATFORM_EXTENSION)
         SET_TARGET_PROPERTIES(${TEST_NAME} PROPERTIES SUFFIX ${PLATFORM_EXTENSION})
     ENDIF()
-    # Link test executable with all the libraries required
-    TARGET_LINK_LIBRARIES(${TEST_NAME} fsm)
+    IF (USE_FSM)
+        TARGET_LINK_LIBRARIES(${TEST_NAME} fsm)
+    ENDIF()
+    IF (USE_HAL)
+        TARGET_LINK_LIBRARIES(${TEST_NAME} hal)
+    ENDIF()
 
     # Flash hardware test to target (only if OpenOCD configuration file is specified)
     IF(DEFINED OPENOCD_CONFIG_FILE)
