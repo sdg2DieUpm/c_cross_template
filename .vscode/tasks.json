@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Run CMake (cortex-debug only)",
+			"label": "Run CMake (nucleo_stm32f446re, debug)",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -12,23 +12,23 @@
 			},
 			"command": "cmake",
 			"args": [
-				"-Bbuild-Debug/nucleo_stm32f446re",
+				"-Bbuild/nucleo_stm32f446re/Debug",
 				"-DPLATFORM=nucleo_stm32f446re",
 				"-DCMAKE_BUILD_TYPE=Debug",
 			],
 			"windows": {
 				"args": [
 					"-G", "MinGW Makefiles",
-					"-Bbuild-Debug/nucleo_stm32f446re",
+					"-Bbuild/nucleo_stm32f446re/Debug",
 					"-DPLATFORM=nucleo_stm32f446re",
 					"-DCMAKE_BUILD_TYPE=Debug",
 				]
 			}
 		},
 		{
-			"label": "Build (cortex-debug only)",
+			"label": "Build (nucleo_stm32f446re, debug)",
 			"dependsOn": [
-				"Run CMake (cortex-debug only)"
+				"Run CMake (nucleo_stm32f446re, debug)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -41,12 +41,12 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild-Debug/nucleo_stm32f446re",
+				"-Cbuild/nucleo_stm32f446re/Debug",
 				"${input:cortexTargetID}",
 			]
 		},
 		{
-			"label": "Run CMake",
+			"label": "Run CMake (advanced)",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -56,23 +56,23 @@
 			},
 			"command": "cmake",
 			"args": [
-				"-Bbuild-${input:buildType}/${input:platformID}",
+				"-Bbuild/${input:platformID}/${input:buildType}",
 				"-DPLATFORM=${input:platformID}",
 				"-DCMAKE_BUILD_TYPE=${input:buildType}",
 			],
 			"windows": {
 				"args": [
 					"-G", "MinGW Makefiles",
-					"-Bbuild-${input:buildType}/${input:platformID}",
+					"-Bbuild/${input:platformID}/${input:buildType}",
 					"-DPLATFORM=${input:platformID}",
 					"-DCMAKE_BUILD_TYPE=${input:buildType}",
 				]
 			}
 		},
 		{
-			"label": "Build",
+			"label": "Build (advanced)",
 			"dependsOn": [
-				"Run CMake"
+				"Run CMake (advanced)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -85,14 +85,14 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild-${input:buildType}/${input:platformID}",
+				"-Cbuild/${input:platformID}/${input:buildType}",
 				"${input:targetID}",
 			]
 		},
 		{
-			"label": "Flash",
+			"label": "Flash (advanced)",
 			"dependsOn": [
-				"Build"
+				"Build (advanced)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -105,14 +105,14 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild-${input:buildType}/${input:platformID}",
-				"${input:targetID}-flash",
+				"-Cbuild/${input:platformID}/${input:buildType}",
+				"$flash-{input:targetID}",
 			]
 		},
 		{
-			"label": "Run Tests",
+			"label": "Run tests (advanced)",
 			"dependsOn": [
-				"Build"
+				"Build (advanced)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}",
@@ -124,7 +124,7 @@
 			"command": "ctest",
 			"args": [
 				"--test-dir",
-				"build-${input:buildType}/${input:platformID}",
+				"build/${input:platformID}/${input:buildType}",
 				"--output-on-failure",
 			]
 		}

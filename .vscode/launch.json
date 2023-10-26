@@ -7,7 +7,7 @@
     {
       "name": "Debug device STM32F446RE",
       "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin-Debug/nucleo_stm32f446re/${input:targetID}.elf",
+      "executable": "${workspaceFolder}/bin/nucleo_stm32f446re/Debug/${input:targetID}.elf",
       "request": "launch",
       "runToEntryPoint": "main",
       "type": "cortex-debug",
@@ -16,7 +16,7 @@
       "configFiles": [
         "${SDGWorkspaceFolder}/openocd/stm32f4x.cfg"
       ],
-      "preLaunchTask": "Build (cortex-debug only)",
+      "preLaunchTask": "Build (nucleo_stm32f446re, debug)",
       "svdFile": "${SDGWorkspaceFolder}/svd/STM32F446.svd",
       "swoConfig": {
         "enabled": true,
