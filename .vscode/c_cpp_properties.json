@@ -32,7 +32,8 @@
             "defines": [
                 "STM32F446xx"
             ],
-            "compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 rel1\\bin\\arm-none-eabi-gcc.exe", // Path to Windows arm-none-eabi cross compiler
+            //"compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 rel1\\bin\\arm-none-eabi-gcc.exe", // Path to Windows arm-none-eabi cross compiler
+            "compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\13.2 Rel1\\bin\\arm-none-eabi-gcc.exe",
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "windows-gcc-arm"
