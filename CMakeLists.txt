@@ -1,7 +1,7 @@
 SET(PROJECT_NAME project) # set it to your project name
 SET(WORKSPACE_ROOT_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../..) # set it to your workspace root directory
 SET(USE_FSM true) # set it to true to use FSM library
-SET(USE_HAL true) # set it to true to use HAL library
+SET(USE_HAL false) # set it to true to use HAL library
 IF(NOT PLATFORM)
     MESSAGE(STATUS "No platform selected, using default. You can override it by passing -DPLATFORM=<platform> to cmake")
     SET(PLATFORM "nucleo_stm32f446re") # set it to your default plaftorm
