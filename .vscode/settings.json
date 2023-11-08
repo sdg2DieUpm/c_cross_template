@@ -1,5 +1,8 @@
 {
     "cmake.configureSettings": {
-        "PLATFORM": "nucleo_stm32f446re"
+        "PLATFORM": "stm32f446re"
+    },
+    "files.associations": {
+        "port_led.h": "c"
     },
 }

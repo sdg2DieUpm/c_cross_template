@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Run CMake (nucleo_stm32f446re, debug)",
+			"label": "Run CMake (stm32f446re, debug)",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -12,23 +12,23 @@
 			},
 			"command": "cmake",
 			"args": [
-				"-Bbuild/nucleo_stm32f446re/Debug",
-				"-DPLATFORM=nucleo_stm32f446re",
+				"-Bbuild/stm32f446re/Debug",
+				"-DPLATFORM=stm32f446re",
 				"-DCMAKE_BUILD_TYPE=Debug",
 			],
 			"windows": {
 				"args": [
 					"-G", "MinGW Makefiles",
-					"-Bbuild/nucleo_stm32f446re/Debug",
-					"-DPLATFORM=nucleo_stm32f446re",
+					"-Bbuild/stm32f446re/Debug",
+					"-DPLATFORM=stm32f446re",
 					"-DCMAKE_BUILD_TYPE=Debug",
 				]
 			}
 		},
 		{
-			"label": "Build (nucleo_stm32f446re, debug)",
+			"label": "Build (stm32f446re, debug)",
 			"dependsOn": [
-				"Run CMake (nucleo_stm32f446re, debug)"
+				"Run CMake (stm32f446re, debug)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -41,14 +41,14 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/nucleo_stm32f446re/Debug",
+				"-Cbuild/stm32f446re/Debug",
 				"${input:cortexTargetID}",
 			]
 		},
 		{
-			"label": "Flash (nucleo_stm32f446re, debug)",
+			"label": "Flash (stm32f446re, debug)",
 			"dependsOn": [
-				"Build (nucleo_stm32f446re, debug)"
+				"Build (stm32f446re, debug)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -61,12 +61,12 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/nucleo_stm32f446re/Debug",
+				"-Cbuild/stm32f446re/Debug",
 				"flash-${input:cortexTargetID}",
 			]
 		},
 		{
-			"label": "Clean (nucleo_stm32f446re, debug)",
+			"label": "Clean (stm32f446re, debug)",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -78,15 +78,15 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/nucleo_stm32f446re/Debug",
+				"-Cbuild/stm32f446re/Debug",
 				"clean",
 			]
 		},
 		{
-			"label": "Clean and flash (nucleo_stm32f446re, debug)",
+			"label": "Clean and flash (stm32f446re, debug)",
 			"dependsOn": [
-				"Clean (nucleo_stm32f446re, debug)",
-				"Flash (nucleo_stm32f446re, debug)"
+				"Clean (stm32f446re, debug)",
+				"Flash (stm32f446re, debug)"
 			],
 			"group": {
 				"kind": "build"
@@ -187,14 +187,14 @@
 			"default": "native",
 			"options": [
 				"native",
-				"nucleo_stm32f446re"
+				"stm32f446re"
 			]
 		},
 		{
 			"id": "targetID",
 			"type": "promptString",
 			"description": "Enter the target:",
-			"default": "all"
+			"default": "main"
 		},
 		{
 			"id": "buildType",

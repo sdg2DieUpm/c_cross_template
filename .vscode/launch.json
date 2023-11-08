@@ -4,7 +4,7 @@
     {
       "name": "Debug device STM32F446RE",
       "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin/nucleo_stm32f446re/Debug/${input:targetID}.elf",
+      "executable": "${workspaceFolder}/bin/stm32f446re/Debug/${input:targetID}.elf",
       "request": "launch",
       "runToEntryPoint": "main",
       "type": "cortex-debug",
@@ -13,7 +13,7 @@
       "configFiles": [
         "${workspaceFolder}/../../openocd/stm32f4x.cfg"
       ],
-      "preLaunchTask": "Build (nucleo_stm32f446re, debug)",
+      "preLaunchTask": "Build (stm32f446re, debug)",
       "svdFile": "${workspaceFolder}/../../svd/STM32F446.svd",
       "swoConfig": {
         "enabled": true,
@@ -38,10 +38,12 @@
       "args": {
         "key": "lasttarget",
         "description": "Enter the target:",
-        "default": "project",
+        "default": "main",
         "options": [
-          "project",
-          "hw_test_led"
+          "main",
+          "test_blink",
+          "test_led",
+          "test_stm32f4",
         ]
       }
 		},
