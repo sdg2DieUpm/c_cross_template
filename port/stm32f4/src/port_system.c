@@ -111,7 +111,6 @@ void port_system_delay_until_ms(uint32_t *t, uint32_t ms)
 /**
  * @brief This function handles System tick timer.
  */
-// TODO: sustituir por funcion propia
 void SysTick_Handler(void)
 {
   msTicks += 1;
