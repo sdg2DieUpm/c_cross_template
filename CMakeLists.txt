@@ -1,11 +1,14 @@
 SET(PROJECT_NAME project) # set it to your project name
-SET(CMAKE_BUILD_TYPE Debug) # set it to Debug or Release
 SET(WORKSPACE_ROOT_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../..) # set it to your workspace root directory
 SET(USE_FSM true) # set it to true to use FSM library
 SET(USE_HAL false) # set it to true to use HAL library
 IF(NOT PLATFORM)
     SET(PLATFORM "stm32f446re") # set it to your default plaftorm
     MESSAGE(STATUS "No platform selected, using default (${PLATFORM}). You can override it by passing -DPLATFORM=<platform> to cmake")
+ENDIF()
+IF(NOT CMAKE_BUILD_TYPE)
+    SET(CMAKE_BUILD_TYPE Debug) # set it to your default plaftorm
+    MESSAGE(STATUS "No build type selected, using default (${CMAKE_BUILD_TYPE}). You can override it by passing -DCMAKE_BUILD_TYPE=<build_type> to cmake")
 ENDIF()
 
 ########################################################################################
