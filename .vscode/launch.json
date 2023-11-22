@@ -13,7 +13,7 @@
       "configFiles": [
         "${workspaceFolder}/../../openocd/stm32f4x.cfg"
       ],
-      "preLaunchTask": "Build (stm32f446re, debug)",
+      "preLaunchTask": "cortex-debug: Build (stm32f446re)",
       "svdFile": "${workspaceFolder}/../../svd/STM32F446.svd",
       "swoConfig": {
         "enabled": true,

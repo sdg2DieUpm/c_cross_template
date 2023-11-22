@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Run CMake (stm32f446re, debug)",
+			"label": "cortex-debug: Run CMake (stm32f446re)",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -25,9 +25,9 @@
 			}
 		},
 		{
-			"label": "Build (stm32f446re, debug)",
+			"label": "cortex-debug: Build (stm32f446re)",
 			"dependsOn": [
-				"Run CMake (stm32f446re, debug)"
+				"cortex-debug: Run CMake (stm32f446re)"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -45,57 +45,7 @@
 			]
 		},
 		{
-			"label": "Flash (stm32f446re, debug)",
-			"dependsOn": [
-				"Build (stm32f446re, debug)"
-			],
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-			"group": {
-				"kind": "build"
-			},
-			"command": "make",
-			"windows": {
-				"command": "mingw32-make"
-			},
-			"args": [
-				"-Cbuild/stm32f446re/Debug",
-				"flash-${input:cortexTargetID}",
-			]
-		},
-		{
-			"label": "Clean (stm32f446re, debug)",
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-			"group": {
-				"kind": "build"
-			},
-			"command": "make",
-			"windows": {
-				"command": "mingw32-make"
-			},
-			"args": [
-				"-Cbuild/stm32f446re/Debug",
-				"clean",
-			]
-		},
-		{
-			"label": "Clean and flash (stm32f446re, debug)",
-			"dependsOn": [
-				"Clean (stm32f446re, debug)",
-				"Flash (stm32f446re, debug)"
-			],
-			"group": {
-				"kind": "build"
-			},
-			"options": {
-				"cwd": "${workspaceRoot}"
-			},
-		},
-		{
-			"label": "Run CMake (advanced)",
+			"label": "Run CMake",
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -118,9 +68,9 @@
 			}
 		},
 		{
-			"label": "Build (advanced)",
+			"label": "Build",
 			"dependsOn": [
-				"Run CMake (advanced)"
+				"Run CMake"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -139,9 +89,9 @@
 			]
 		},
 		{
-			"label": "Flash (advanced)",
+			"label": "Flash",
 			"dependsOn": [
-				"Build (advanced)"
+				"Build"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -159,13 +109,12 @@
 			]
 		},
 		{
-			"label": "Run tests (advanced)",
+			"label": "Run tests (PLATFORM MUST BE native, TARGET MUST BE all)",
 			"dependsOn": [
-				"Build (advanced)"
+				"Build"
 			],
 			"options": {
 				"cwd": "${workspaceRoot}",
-				"${input:platformID}": "native"
 			},
 			"group": {
 				"kind": "test"
@@ -183,7 +132,7 @@
 			"id": "platformID",
 			"type": "pickString",
 			"description": "Enter the platform:",
-			"default": "native",
+			"default": "stm32f446re",
 			"options": [
 				"native",
 				"stm32f446re"
@@ -199,7 +148,7 @@
 			"id": "buildType",
 			"type": "pickString",
 			"description": "Enter the build type:",
-			"default": "Debug",
+			"default": "Release",
 			"options": [
 				"Debug",
 				"Release"
