@@ -2,19 +2,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug device STM32F446RE",
+      "name": "Debug (stm32f446re)", // PORTABILITY: PORTABILITY: change this to your platform
       "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin/stm32f446re/Debug/${input:targetID}.elf",
+      "executable": "${workspaceFolder}/bin/stm32f446re/Debug/${input:targetID}.elf", // PORTABILITY: change this to your platform
       "request": "launch",
       "runToEntryPoint": "main",
       "type": "cortex-debug",
       "servertype": "openocd",
-      "device": "STM32F446RE",
+      "device": "STM32F446RE", // PORTABILITY: change this to your platform
       "configFiles": [
         "${workspaceFolder}/../../openocd/stm32f4x.cfg"
       ],
-      "preLaunchTask": "cortex-debug: Build (stm32f446re)",
-      "svdFile": "${workspaceFolder}/../../svd/STM32F446.svd",
+      "preLaunchTask": "cortex-debug: Build (stm32f446re)", // PORTABILITY: change this to your platform
+      "svdFile": "${workspaceFolder}/../../svd/STM32F446.svd", // PORTABILITY: change this to your platform
       "swoConfig": {
         "enabled": true,
         "cpuFrequency": 16000000,
@@ -28,7 +28,7 @@
           }
         ]
       }
-    }
+    },
   ],
   "inputs": [
 		{

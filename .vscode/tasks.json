@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "cortex-debug: Run CMake (stm32f446re)",
+			"label": "cortex-debug: Run CMake (stm32f446re)", // PORTABILITY: change this to your platform
 			"options": {
 				"cwd": "${workspaceRoot}"
 			},
@@ -11,23 +11,23 @@
 			},
 			"command": "cmake",
 			"args": [
-				"-Bbuild/stm32f446re/Debug",
-				"-DPLATFORM=stm32f446re",
+				"-Bbuild/stm32f446re/Debug", // PORTABILITY: change this to your platform
+				"-DPLATFORM=stm32f446re", // PORTABILITY: change this to your platform
 				"-DCMAKE_BUILD_TYPE=Debug",
 			],
 			"windows": {
 				"args": [
 					"-G", "MinGW Makefiles",
-					"-Bbuild/stm32f446re/Debug",
-					"-DPLATFORM=stm32f446re",
+					"-Bbuild/stm32f446re/Debug", // PORTABILITY: change this to your platform
+					"-DPLATFORM=stm32f446re", // PORTABILITY: change this to your platform
 					"-DCMAKE_BUILD_TYPE=Debug",
 				]
 			}
 		},
 		{
-			"label": "cortex-debug: Build (stm32f446re)",
+			"label": "cortex-debug: Build (stm32f446re)", // PORTABILITY: change this to your platform
 			"dependsOn": [
-				"cortex-debug: Run CMake (stm32f446re)"
+				"cortex-debug: Run CMake (stm32f446re)" // PORTABILITY: change this to your platform
 			],
 			"options": {
 				"cwd": "${workspaceRoot}"
@@ -40,7 +40,7 @@
 				"command": "mingw32-make"
 			},
 			"args": [
-				"-Cbuild/stm32f446re/Debug",
+				"-Cbuild/stm32f446re/Debug", // PORTABILITY: change this to your platform
 				"${input:cortexTargetID}",
 			]
 		},
@@ -132,10 +132,12 @@
 			"id": "platformID",
 			"type": "pickString",
 			"description": "Enter the platform:",
-			"default": "stm32f446re",
+			"default": "stm32f446re", // PORTABILITY: change this to your platform
 			"options": [
 				"native",
-				"stm32f446re"
+				"stm32f401re",
+				"stm32f411re",
+				"stm32f446re",
 			]
 		},
 		{

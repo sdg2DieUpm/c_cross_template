@@ -3,7 +3,7 @@ SET(WORKSPACE_ROOT_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/../..) # set it to your work
 SET(USE_FSM true) # set it to true to use FSM library
 SET(USE_HAL false) # set it to true to use HAL library
 IF(NOT PLATFORM)
-    SET(PLATFORM "stm32f446re") # set it to your default plaftorm
+    SET(PLATFORM "stm32f446re") # PORTABILITY: change this to your platform
     MESSAGE(STATUS "No platform selected, using default (${PLATFORM}). You can override it by passing -DPLATFORM=<platform> to cmake")
 ENDIF()
 IF(NOT CMAKE_BUILD_TYPE)

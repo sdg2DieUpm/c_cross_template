@@ -1,11 +1,6 @@
 {
     "env": {
-        "SDGWorkspaceFolder": "${workspaceFolder}/../..", // Path to the SDG workspace folder
-        "stm32f446reIncludePath": [
-            "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
-            "${workspaceFolder}/**", // Path to the project sources
-            "${SDGWorkspaceFolder}/drivers/stm32f4xx/**" // Path to the STM32F4xx CMSIS and HAL drivers
-        ]
+        "SDGWorkspaceFolder": "${workspaceFolder}/../.." // Path to the SDG workspace folder
     },
     "configurations": [
         {
@@ -30,7 +25,7 @@
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
             "defines": [
-                "STM32F446xx"
+                "STM32F446xx" // PORTABILITY: change this to your platform
             ],
             "compilerPath": "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\13.2 Rel1\\bin\\arm-none-eabi-gcc.exe",
             "cStandard": "gnu17",
@@ -59,7 +54,7 @@
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
             "defines": [
-                "STM32F446xx"
+                "STM32F446xx" // PORTABILITY: change this to your platform
             ],
             "compilerPath": "/usr/bin/arm-none-eabi-gcc",
             "cStandard": "gnu17",
@@ -88,7 +83,7 @@
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
             "defines": [
-                "STM32F446xx"
+                "STM32F446xx" // PORTABILITY: change this to your platform
             ],
             "compilerPath": "/opt/local/bin/arm-none-eabi-gcc", // For Intel users
             "cStandard": "gnu17",
@@ -104,7 +99,7 @@
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
             "defines": [
-                "STM32F446xx"
+                "STM32F446xx" // PORTABILITY: change this to your platform
             ],
             "compilerPath": "/opt/homebrew/bin/arm-none-eabi-gcc", // For Apple Silicon users
             "cStandard": "gnu17",
