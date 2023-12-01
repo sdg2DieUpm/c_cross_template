@@ -1,12 +1,12 @@
 {
     "env": {
-        "SDGWorkspaceFolder": "${workspaceFolder}/../.." // Path to the SDG workspace folder
+        "MatrixMCUWorkspaceFolder": "${workspaceFolder}/../.." // Path to the MatrixMCU workspace folder
     },
     "configurations": [
         {
             "name": "win32-native",
             "includePath": [
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/native/**" // Path to the project port sources
             ],
@@ -19,8 +19,8 @@
         {
             "name": "win32-stm32f4",
             "includePath": [
-                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
@@ -35,7 +35,7 @@
         {
             "name": "linux-native",
             "includePath": [
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/native/**" // Path to the project port sources
             ],
@@ -48,15 +48,15 @@
         {
             "name": "linux-stm32f446re",
             "includePath": [
-                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
             "defines": [
                 "STM32F446xx" // PORTABILITY: change this to your platform
             ],
-            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "compilerPath": "/opt/MatrixMCU/bin/arm-none-eabi-gcc",
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-arm"
@@ -64,7 +64,7 @@
         {
             "name": "macos-native",
             "includePath": [
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/native/**" // Path to the project port sources
             ],
@@ -77,8 +77,8 @@
         {
             "name": "macos-stm32f446re-intel",
             "includePath": [
-                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
@@ -93,8 +93,8 @@
         {
             "name": "macos-stm32f446re-silicon",
             "includePath": [
-                "${SDGWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
-                "${SDGWorkspaceFolder}/lib/*/**", // Path to the SDG lib folder (e.g., FSM or Unity)
+                "${MatrixMCUWorkspaceFolder}/drivers/stm32f4xx/**", // Path to the STM32F4xx CMSIS and HAL drivers
+                "${MatrixMCUWorkspaceFolder}/lib/*/**", // Path to the MatrixMCU lib folder (e.g., FSM or Unity)
                 "${workspaceFolder}/common/**", // Path to the project common sources
                 "${workspaceFolder}/port/stm32f4/**" // Path to the project port sources
             ],
