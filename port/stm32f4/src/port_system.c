@@ -88,7 +88,7 @@ void port_system_delay_ms(uint32_t ms)
 {
   uint32_t tickstart = port_system_get_millis();
 
-  while((port_system_get_millis() - tickstart) < ms)
+    while((port_system_get_millis() - tickstart) < ms)
   {
   }
 }

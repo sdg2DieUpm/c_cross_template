@@ -13,9 +13,8 @@
 /**
  * @brief Configura el GPIO para el LED
  * 
- * @return int 0 si todo fue bien, -1 si hubo un error
  */
-int port_led_gpio_setup(void);
+void port_led_gpio_setup(void);
 
 /**
  * @brief Devuelve el estado del LED
@@ -28,22 +27,19 @@ bool port_led_get(void);
 /**
  * @brief Enciende el LED
  * 
- * @return int 0 si todo fue bien, -1 si hubo un error
  */
-int port_led_on(void);
+void port_led_on(void);
 
 /**
  * @brief Apaga el LED
  * 
- * @return int 0 si todo fue bien, -1 si hubo un error
  */
-int port_led_off(void);
+void port_led_off(void);
 
 /**
  * @brief Invierte el estado del LED
  * 
- * @return int 0 si todo fue bien, -1 si hubo un error
  */
-int port_led_toggle(void);
+void port_led_toggle(void);
 
 #endif // PORT_LED_H_

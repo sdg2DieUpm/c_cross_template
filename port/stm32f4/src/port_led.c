@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "port_led.h"
 #include "port_system.h"
 
@@ -19,7 +20,7 @@
 #define ODR5_MASK (0x01 << 5) /* Cada pin ocupa 1 bit */
 
 
-int port_led_gpio_setup(void)
+void port_led_gpio_setup(void)
 {
     /* Primero , habilitamos siempre el reloj de los perifericos */
     RCC -> AHB1ENR |= RCC_AHB1ENR_GPIOAEN ;
@@ -29,8 +30,6 @@ int port_led_gpio_setup(void)
     /* Finalmente , configuramos el LED como salida sin pull up/ pull down */
     GPIOA -> MODER |= MODER5_AS_OUTPUT ;
     GPIOA -> PUPDR |= PUPDR5_AS_NOPUPD ;
-
-    return 0;
 }
 
 bool port_led_get(void)
@@ -38,20 +37,24 @@ bool port_led_get(void)
     return (GPIOA->IDR & IDR5_MASK) != 0;
 }
 
-int port_led_on(void)
+void port_led_on(void)
 {
     GPIOA->ODR |= ODR5_MASK;
-    return 0;
+    printf("[%ld] LED ON\n", port_system_get_millis());
 }
 
-int port_led_off(void)
+void port_led_off(void)
 {
     GPIOA->ODR &= ~ODR5_MASK;
-    return 0;
+    printf("[%ld] LED OFF\n", port_system_get_millis());
 }
 
-int port_led_toggle(void)
+void port_led_toggle(void)
 {
     GPIOA->ODR ^= ODR5_MASK;
-    return 0;
+
+    if (port_led_get())
+        printf("[%ld] LED ON\n", port_system_get_millis());
+    else
+        printf("[%ld] LED OFF\n", port_system_get_millis());
 }

@@ -18,9 +18,8 @@
 
 /**
  * @brief  Configures the GPIO port connected to the LED.
- * @retval 0 if OK, -1 otherwise
  */
-int port_led_gpio_setup(void);
+void port_led_gpio_setup(void);
 
 /**
  * @brief  Gets the current state of the LED.
@@ -31,21 +30,18 @@ bool port_led_get(void);
 /**
  * @brief  Sets the LED state.
  * @param  state: true to turn the LED on, false to turn it off
- * @retval 0 if OK, -1 otherwise
  */
-int port_led_on(void);
+void port_led_on(void);
 
 /**
  * @brief  Sets the LED state.
  * @param  state: true to turn the LED on, false to turn it off
- * @retval 0 if OK, -1 otherwise
  */
-int port_led_off(void);
+void port_led_off(void);
 
 /**
  * @brief  Toggles the LED state.
- * @retval 0 if OK, -1 otherwise
  */
-int port_led_toggle(void);
+void port_led_toggle(void);
 
 #endif // PORT_LED_H_
