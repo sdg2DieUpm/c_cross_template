@@ -18,45 +18,54 @@ static led_gpio_t led_gpio = {
     .status = false,
 };
 
-void port_led_gpio_setup() {
+void port_led_gpio_setup()
+{
     if (led_gpio.config == UNCONFIGURED)
     {
         printf("[%lld] LED clock enabled\n", (long long)port_system_get_millis());
     }
-    if (led_gpio.config != OUTPUT){
+    if (led_gpio.config != OUTPUT)
+    {
         led_gpio.config = OUTPUT;
         printf("[%lld] LED pin mode configured mode as output\n", (long long)port_system_get_millis());
         printf("[%lld] LED pin pull up/down configuration as no PUPD\n", (long long)port_system_get_millis());
     }
-    fflush(stdout); 
+    fflush(stdout);
 }
 
-bool port_led_get() {
+bool port_led_get()
+{
     return led_gpio.status;
 }
 
-int port_led_on() {
+void port_led_on()
+{
     if (led_gpio.config == OUTPUT)
     {
         led_gpio.status = true;
         printf("[%lld] LED ON\n", (long long)port_system_get_millis());
         fflush(stdout);
-        return 0;
     }
-    printf("[%lld] LED not configured as output\n", (long long)port_system_get_millis());
-    fflush(stdout);
+    else
+    {
+        printf("[%lld] LED not configured as output\n", (long long)port_system_get_millis());
+        fflush(stdout);
+    }
 }
 
-void port_led_off() {
+void port_led_off()
+{
     if (led_gpio.config == OUTPUT)
     {
         printf("[%lld] LED OFF\n", (long long)port_system_get_millis());
         fflush(stdout);
         led_gpio.status = false;
-        return 0;
     }
-    printf("[%lld] LED not configured as output\n", (long long)port_system_get_millis());
-    fflush(stdout);
+    else
+    {
+        printf("[%lld] LED not configured as output\n", (long long)port_system_get_millis());
+        fflush(stdout);
+    }
 }
 
 /**
@@ -65,5 +74,5 @@ void port_led_off() {
  */
 void port_led_toggle()
 {
-    return (port_led_get()) ? port_led_off() : port_led_on();
+    (port_led_get()) ? port_led_off() : port_led_on();
 }

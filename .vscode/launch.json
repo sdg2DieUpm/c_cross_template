@@ -29,6 +29,42 @@
         ]
       }
     },
+    {
+      "name": "Debug PC",
+      "type": "cppdbg", 
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}",
+      "linux": {
+          "name": "Debug PC -linux",
+          "type": "cppdbg", 
+          "request": "launch",
+          "MIMode": "gdb",
+          "miDebuggerPath": "gdb",
+          "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}"
+      },
+      "osx": {
+        "name": "Debug PC -mac",
+        "type": "cppdbg", 
+        "request": "launch",
+        "MIMode": "lldb",
+        "miDebuggerPath": "lldb-mi",
+        "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}"
+      },
+      "windows": {
+        "name": "Debug PC -win",
+        "type": "cppdbg", 
+        "request": "launch",
+        "MIMode": "gdb",
+        "miDebuggerPath": "gdb.exe",
+        "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}.exe"
+      },
+      "preLaunchTask": "Build"
+  }
   ],
   "inputs": [
 		{
