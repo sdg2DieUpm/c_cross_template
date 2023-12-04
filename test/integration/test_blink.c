@@ -9,7 +9,7 @@
 int main()
 {
     port_system_init();                 // inicializamos el sistema
-    while (port_led_gpio_setup()) {}; // Configuramos el GPIO para el LED
+    port_led_gpio_setup(); // Configuramos el GPIO para el LED
 
     uint32_t t = port_system_get_millis(); // en t llevamos cuenta del tiempo actual
     while (1)

@@ -4,7 +4,7 @@
     {
       "name": "Debug (stm32f446re)", // PORTABILITY: PORTABILITY: change this to your platform
       "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin/stm32f446re/Debug/${input:targetID}.elf", // PORTABILITY: change this to your platform
+      "executable": "${workspaceFolder}/bin/stm32f446re/Debug/${input:cortexTargetID}.elf", // PORTABILITY: change this to your platform
       "request": "launch",
       "runToEntryPoint": "main",
       "type": "cortex-debug",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "name": "Debug PC",
+      "name": "Debug (native)",
       "type": "cppdbg", 
       "request": "launch",
       "args": [],
@@ -38,37 +38,23 @@
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": false,
-      "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}",
-      "linux": {
-          "name": "Debug PC -linux",
-          "type": "cppdbg", 
-          "request": "launch",
-          "MIMode": "gdb",
-          "miDebuggerPath": "gdb",
-          "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}"
-      },
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "program": "${workspaceFolder}/bin/native/Debug/${input:nativeTargetID}",
       "osx": {
-        "name": "Debug PC -mac",
-        "type": "cppdbg", 
-        "request": "launch",
         "MIMode": "lldb",
-        "miDebuggerPath": "lldb-mi",
-        "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}"
+        "miDebuggerPath": "${env:HOME}/.vscode/extensions/ms-vscode.cpptools-1.18.5-darwin-arm64/debugAdapters/lldb-mi/bin/lldb-mi", // CHECK THE CORRECT PATH FOR YOUR MACHINE
       },
       "windows": {
-        "name": "Debug PC -win",
-        "type": "cppdbg", 
-        "request": "launch",
-        "MIMode": "gdb",
         "miDebuggerPath": "gdb.exe",
-        "program": "${workspaceFolder}/bin/native/Debug/${input:targetID}.exe"
+        "program": "${workspaceFolder}/bin/native/Debug/${input:nativeTargetID}.exe"
       },
-      "preLaunchTask": "Build"
+      "preLaunchTask": "native: Build"
   }
   ],
   "inputs": [
 		{
-			"id": "targetID",
+			"id": "cortexTargetID",
       "type": "command",
       "command": "extension.commandvariable.pickStringRemember",
       "args": {
@@ -79,7 +65,22 @@
           "main",
           "test_blink",
           "test_led",
-          "test_stm32f4",
+          "test_stm32f4"
+        ]
+      }
+		},
+    {
+			"id": "nativeTargetID",
+      "type": "command",
+      "command": "extension.commandvariable.pickStringRemember",
+      "args": {
+        "key": "lasttarget",
+        "description": "Enter the target:",
+        "default": "main",
+        "options": [
+          "main",
+          "test_blink",
+          "test_led",
         ]
       }
 		},

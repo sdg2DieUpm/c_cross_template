@@ -45,6 +45,50 @@
 			]
 		},
 		{
+			"label": "native: Run CMake",
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build",
+			},
+			"command": "cmake",
+			"args": [
+				"-Bbuild/native/Debug",
+				"-DPLATFORM=native",
+				"-DCMAKE_BUILD_TYPE=Debug",
+			],
+			"windows": {
+				"args": [
+					"-G", "MinGW Makefiles",
+					"-Bbuild/native/Debug",
+					"-DPLATFORM=native",
+					"-DCMAKE_BUILD_TYPE=Debug",
+				]
+			}
+		},
+		{
+			"label": "native: Build",
+			"dependsOn": [
+				"native: Run CMake"
+			],
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"command": "make",
+			"windows": {
+				"command": "mingw32-make"
+			},
+			"args": [
+				"-Cbuild/native/Debug",
+				"${input:cortexTargetID}",
+			]
+		},
+		{
 			"label": "Run CMake",
 			"options": {
 				"cwd": "${workspaceRoot}"

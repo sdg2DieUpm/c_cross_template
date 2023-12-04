@@ -14,18 +14,18 @@ void tearDown(void)
 
 void test_led(void)
 {
-    TEST_ASSERT_EQUAL(port_led_gpio_setup(), 0);
+    port_led_gpio_setup();
     TEST_ASSERT_FALSE(port_led_get());
 
-    TEST_ASSERT_EQUAL(port_led_on(), 0);
+    port_led_on();
     TEST_ASSERT_TRUE(port_led_get());
 
-    TEST_ASSERT_EQUAL(port_led_off(), 0);
+    port_led_off();
     TEST_ASSERT_FALSE(port_led_get());
 
-    TEST_ASSERT_EQUAL(port_led_toggle(), 0);
+    port_led_toggle();
     TEST_ASSERT_TRUE(port_led_get());
-    TEST_ASSERT_EQUAL(port_led_toggle(), 0);
+    port_led_toggle();
     TEST_ASSERT_FALSE(port_led_get());
 }
 
