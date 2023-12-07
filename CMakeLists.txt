@@ -33,9 +33,9 @@ SET(CMAKE_C_FLAGS_RELEASE "-O3")
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${PLATFORM}/${CMAKE_BUILD_TYPE})
 
 # Find source and include files of the project
-ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/common) # project library (common)
-ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/port)   # project library (port)
-FILE (GLOB PROJECT_SOURCES ${PROJECT_SOURCES})       # project library source files
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/common)             # project library (common)
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/port)               # project library (port)
+FILE (GLOB PROJECT_SOURCES CONFIGURE_DEPENDS ${PROJECT_SOURCES}) # project library source files
 
 # Uncomment the following log traces for debugging
 # MESSAGE(STATUS "Found source files: ${PROJECT_SOURCES}")
