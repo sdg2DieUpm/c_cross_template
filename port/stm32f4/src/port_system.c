@@ -2,18 +2,48 @@
 /* HW dependent includes */
 #include "stm32f4xx.h"
 
+//------------------------------------------------------
+// FILE-SPECIFIC DEFINITIONS
+//------------------------------------------------------
 
-/* GLOBAL VARIABLES */
-static volatile uint32_t msTicks = 0; /*!< Variable to store millisecond ticks */
+#define HSI_VALUE ((uint32_t)16000000) /*!< Value of the Internal oscillator in Hz */
+/* Timer configuration */
+#define RCC_HSI_CALIBRATION_DEFAULT 0x10U            /*!< Default HSI calibration trimming value */
+#define TICK_FREQ_1KHZ 1U                            /*!< Freqency in kHz of the System tick */
+#define NVIC_PRIORITY_GROUP_0 ((uint32_t)0x00000007) /*!< 0 bit  for pre-emption priority, \
+                                                         4 bits for subpriority */
+#define NVIC_PRIORITY_GROUP_4 ((uint32_t)0x00000003) /*!< 4 bits for pre-emption priority, \
+                                                         0 bit  for subpriority */
+/* Power */
+#define POWER_REGULATOR_VOLTAGE_SCALE3 0x01 /*!< Scale 3 mode: the maximum value of fHCLK is 120 MHz. */
+
+//------------------------------------------------------
+// PRIVATE (STATIC) VARIABLES
+//------------------------------------------------------
+
+static volatile uint32_t msTicks = 0; /*!< Variable to store millisecond ticks. @warning **It must be declared volatile!** Just because it is modified in an ISR. **Add it to the definition** after *static*. */
+
+//------------------------------------------------------
+// PUBLIC (GLOBAL) VARIABLES
+//------------------------------------------------------
+
+/* These variables are declared extern in CMSIS (system_stm32f4xx.h) */
+uint32_t SystemCoreClock = HSI_VALUE;                                               /*!< Frequency of the System clock */
+const uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9}; /*!< Prescaler values for AHB bus */
+const uint8_t APBPrescTable[8] = {0, 0, 0, 0, 1, 2, 3, 4};                          /*!< Prescaler values for APB bus */
+
+//------------------------------------------------------
+// PRIVATE (STATIC) FUNCTIONS
+//------------------------------------------------------
 
 /**
  * @brief System Clock Configuration
  *
- * This function should not be accesible from the outside to avoid configuration problems.
- * This function starts a system timer that generates a SysTick every 1 ms.
+ * @attention This function should NOT be accesible from the outside to avoid configuration problems.
+ * @note This function starts a system timer that generates a SysTick every 1 ms.
  * @retval None
  */
-void SystemClock_Config(void)
+static void system_clock_config(void)
 {
   /** Configure the main internal regulator output voltage */
   /* Power controller (PWR) */
@@ -46,7 +76,35 @@ void SystemClock_Config(void)
   SysTick_Config(SystemCoreClock / (1000U / TICK_FREQ_1KHZ)); /* Set Systick to 1 ms */
 }
 
-size_t port_system_init()
+//------------------------------------------------------
+// PUBLIC (GLOBAL) FUNCTIONS
+//------------------------------------------------------
+
+/**
+ * @brief  Setup the microcontroller system
+ *         Initialize the FPU setting, vector table location and External memory
+ *         configuration.
+ *
+ * @note   This function is called at startup by CMSIS in startup_stm32f446xx.s.
+ */
+void SystemInit(void)
+{
+/* FPU settings ------------------------------------------------------------*/
+#if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+  SCB->CPACR |= ((3UL << 10 * 2) | (3UL << 11 * 2)); /* set CP10 and CP11 Full Access */
+#endif
+
+#if defined(DATA_IN_ExtSRAM) || defined(DATA_IN_ExtSDRAM)
+  SystemInit_ExtMemCtl();
+#endif /* DATA_IN_ExtSRAM || DATA_IN_ExtSDRAM */
+
+  /* Configure the Vector Table location -------------------------------------*/
+#if defined(USER_VECT_TAB_ADDRESS)
+  SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
+#endif                                                 /* USER_VECT_TAB_ADDRESS */
+}
+
+uint32_t port_system_init()
 {
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   /* Configure Flash prefetch, Instruction cache, Data cache */
@@ -72,16 +130,11 @@ size_t port_system_init()
 
   /* Peripheral clock enable register */
   RCC->APB1ENR |= RCC_APB1ENR_PWREN; /* PWREN: Power interface clock enable */
+
   /* Configure the system clock */
-  SystemClock_Config();
+  system_clock_config();
 
   return 0;
-}
-
-
-uint32_t port_system_get_millis()
-{
-  return msTicks;
 }
 
 void port_system_delay_ms(uint32_t ms)
@@ -103,15 +156,13 @@ void port_system_delay_until_ms(uint32_t *t, uint32_t ms)
   *t = port_system_get_millis();
 }
 
-
-
-//------------------------------------------------------
-// SUBRUTINAS DE ATENCION A LAS INTERRUPCION
-//------------------------------------------------------
-/**
- * @brief This function handles System tick timer.
- */
-void SysTick_Handler(void)
+uint32_t port_system_get_millis()
 {
-  msTicks += 1;
+  return msTicks;
+}
+
+
+void port_system_set_millis(uint32_t ms)
+{
+  msTicks = ms;
 }

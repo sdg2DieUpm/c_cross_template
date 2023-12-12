@@ -1,4 +1,3 @@
-# Common unit tests (valid for all platforms)
 FILE(GLOB TEST_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ./test_*.c)
 FOREACH(TEST_SOURCE ${TEST_SOURCES})
     # Rule to build unit tests
@@ -20,16 +19,3 @@ FOREACH(TEST_SOURCE ${TEST_SOURCES})
         ADD_TEST(NAME ${TEST_NAME} COMMAND ${TEST_NAME} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../bin/${PLATFORM}/${CMAKE_BUILD_TYPE})
     ENDIF()
 ENDFOREACH(TEST_SOURCE)
-
-# Platform-specific unit tests (only valid for a specific platform)
-FILE(GLOB children RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
-FOREACH (child ${children})
-    IF(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${child})
-        # assert that PLATFORM starts with the name of child directory
-        STRING(FIND ${PLATFORM} ${child} PLATFORM_STARTS_WITH)
-        IF(PLATFORM_STARTS_WITH EQUAL 0)
-            # add test subdirectory if it exists
-            ADD_SUBDIRECTORY(${child})
-        ENDIF()
-    ENDIF()
-ENDFOREACH(child)
