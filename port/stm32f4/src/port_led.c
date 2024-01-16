@@ -9,9 +9,6 @@
 // HW Nucleo-STM32F446RE:
 
 
-#define GPIO_MODE_OUT 0x01       /*!< GPIO as output */
-#define GPIO_PUPDR_NOPULL 0x00 /*!< GPIO no pull up or down */
-
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
 
