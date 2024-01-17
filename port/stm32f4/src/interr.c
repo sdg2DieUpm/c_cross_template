@@ -10,7 +10,6 @@
 #include "port_system.h"
 #include "stm32f4xx.h"
 
-
 /**
  * @brief Interrupt service routine for the System tick timer (SysTick).
  * 
