@@ -2,6 +2,10 @@
 
 This README serves as a template for the documentation of your project. You can use it as a guide to write your own documentation. At the end of the document you will find some information on the `project_template` repository.
 
+Watch this video to better understand how to document your code with **Doxygen**:
+
+[![Link to Doxygen tutorial](docs/assets/imgs/doxygen_thumb.png)](https://youtu.be/VC7fExJJQSY?si=oIAZU_b2sRWhu3de "[MatrixMCU]. Documentación de código con Doxygen.")
+
 ## Authors
 
 * **Author 1** - email: [author@author.es](mailto:author@author.es)
@@ -89,7 +93,6 @@ Link to the [FSM of Version 1](fsm__button_8c.html).
 
 It looks like this: Link to the [File with ISRs](interr_8c.html).
 
-
 ## Version 2
 
 Brief description of version 2.
@@ -98,7 +101,7 @@ Brief description of version 2.
 
 Brief description of version N.
 
-# Information on project_template
+## Information on project_template
 
 Template repository for C projects
 

@@ -1,21 +1,42 @@
+/**
+ * @file port_led.c
+ * @author Román Cárdenas (r.cardenas@upm.es)
+ * @brief Port layer for the LED emulation in the native platform.
+ * @date 01-01-2024
+ */
 #include "port_led.h"
 
+/* Enumerations ------------------------------------------------------------------*/
+/**
+ * @brief Enumerates the possible configurations for the LED GPIO.
+ *
+ */
 typedef enum
 {
-    UNCONFIGURED = -1,
-    OUTPUT = 0,
-    INPUT = 1,
+    UNCONFIGURED = -1, /*!< The LED GPIO is not configured. */
+    OUTPUT = 0,        /*!< The LED GPIO is configured as output. */
+    INPUT = 1,         /*!< The LED GPIO is configured as input. */
 } LED_GPIO_CONFIG;
 
+/* Structures ------------------------------------------------------------------*/
+/**
+ * @brief Structure to store the LED GPIO configuration and status.
+ *
+ */
 typedef struct
 {
-    LED_GPIO_CONFIG config;
-    bool status;
+    LED_GPIO_CONFIG config; /*!< The LED GPIO configuration. */
+    bool status;            /*!< The LED GPIO status. */
 } led_gpio_t;
 
+/* Variables ------------------------------------------------------------------*/
+/**
+ * @brief LED GPIO configuration and status.
+ *
+ */
 static led_gpio_t led_gpio = {
-    .config = UNCONFIGURED,
-    .status = false,
+    .config = UNCONFIGURED, /*!< LED configuration. */
+    .status = false,        /*!< LED status. */
 };
 
 void port_led_gpio_setup()
@@ -68,10 +89,6 @@ void port_led_off()
     }
 }
 
-/**
- * @brief Board toggle led
- *
- */
 void port_led_toggle()
 {
     (port_led_get()) ? port_led_off() : port_led_on();

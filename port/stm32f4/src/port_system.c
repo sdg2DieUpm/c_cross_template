@@ -1,11 +1,17 @@
-#include "port_system.h"
+/**
+ * @file port_system.c
+ * @author Josué Pagán Ortiz (j.pagan@upm.es)
+ * @brief Port layer for the system functions in the STM32F4 platform.
+ * @date 01-01-2024
+ */
+
 /* HW dependent includes */
+#include "port_system.h"
 #include "stm32f4xx.h"
 
 //------------------------------------------------------
 // FILE-SPECIFIC DEFINITIONS
 //------------------------------------------------------
-
 #define HSI_VALUE ((uint32_t)16000000) /*!< Value of the Internal oscillator in Hz */
 /* Timer configuration */
 #define RCC_HSI_CALIBRATION_DEFAULT 0x10U            /*!< Default HSI calibration trimming value */
@@ -20,7 +26,6 @@
 //------------------------------------------------------
 // PRIVATE (STATIC) VARIABLES
 //------------------------------------------------------
-
 static volatile uint32_t msTicks = 0; /*!< Variable to store millisecond ticks. @warning **It must be declared volatile!** Just because it is modified in an ISR. **Add it to the definition** after *static*. */
 
 //------------------------------------------------------
@@ -41,7 +46,6 @@ const uint8_t APBPrescTable[8] = {0, 0, 0, 0, 1, 2, 3, 4};                      
  *
  * @attention This function should NOT be accesible from the outside to avoid configuration problems.
  * @note This function starts a system timer that generates a SysTick every 1 ms.
- * @retval None
  */
 static void system_clock_config(void)
 {
@@ -141,7 +145,7 @@ void port_system_delay_ms(uint32_t ms)
 {
   uint32_t tickstart = port_system_get_millis();
 
-    while((port_system_get_millis() - tickstart) < ms)
+  while ((port_system_get_millis() - tickstart) < ms)
   {
   }
 }
@@ -150,7 +154,8 @@ void port_system_delay_until_ms(uint32_t *t, uint32_t ms)
 {
   uint32_t until = *t + ms;
   uint32_t now = port_system_get_millis();
-  if (until > now) {
+  if (until > now)
+  {
     port_system_delay_ms(until - now);
   }
   *t = port_system_get_millis();
@@ -160,7 +165,6 @@ uint32_t port_system_get_millis()
 {
   return msTicks;
 }
-
 
 void port_system_set_millis(uint32_t ms)
 {
