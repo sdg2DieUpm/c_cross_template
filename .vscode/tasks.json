@@ -50,6 +50,31 @@
 			}
 		},
 		{
+			"label": "native: Run CMake, Fresh",
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build",
+			},
+			"command": "cmake",
+			"args": [
+				"--fresh", 
+				"-Bbuild/native/Debug",
+				"-DPLATFORM=native",
+				"-DCMAKE_BUILD_TYPE=Debug",
+			],
+			"windows": {
+				"args": [
+					"--fresh",
+					"-G", "MinGW Makefiles",
+					"-Bbuild/native/Debug",
+					"-DPLATFORM=native",
+					"-DCMAKE_BUILD_TYPE=Debug",
+				]
+			}
+		},
+		{
 			"label": "cortex-debug: Build (stm32f446re)", // PORTABILITY: change this to your platform
 			"dependsOn": [
 				"cortex-debug: Run CMake (stm32f446re)" // PORTABILITY: change this to your platform
@@ -66,7 +91,7 @@
 			},
 			"args": [
 				"-Cbuild/stm32f446re/Debug", // PORTABILITY: change this to your platform
-				"${input:cortexTargetID}",
+				"${input:launchTargetID}",
 			]
 		},
 		{
@@ -92,6 +117,15 @@
 				"cortex-debug: Run CMake, Fresh (stm32f446re)", // PORTABILITY: change this to your platform
 				"cortex-debug: Clean (stm32f446re)", // PORTABILITY: change this to your platform
 				"cortex-debug: Build (stm32f446re)", // PORTABILITY: change this to your platform				
+			],
+			"dependsOrder": "sequence",
+		},
+		{
+			"label": "Clean and Build (native)",
+			"dependsOn": [
+				"native: Run CMake, Fresh",
+				"native: Clean",
+				"native: Build",
 			],
 			"dependsOrder": "sequence",
 		},
@@ -137,7 +171,7 @@
 			},
 			"args": [
 				"-Cbuild/native/Debug",
-				"${input:cortexTargetID}",
+				"${input:launchTargetID}",
 			],
 		},
 		{
@@ -239,6 +273,23 @@
 				"-Cbuild/${input:platformID}/${input:buildType}",
 				"clean",
 			]
+		},		
+		{
+			"label": "native: Clean",
+			"options": {
+				"cwd": "${workspaceRoot}"
+			},
+			"group": {
+				"kind": "build",
+			},
+			"command": "make",
+			"windows": {
+				"command": "mingw32-make"
+			},
+			"args": [
+				"-Cbuild/native/Debug",
+				"clean",
+			]
 		},
 		{
 			"label": "Run tests (PLATFORM MUST BE native, TARGET MUST BE all)",
@@ -299,7 +350,7 @@
 			]
 		},
 		{
-			"id": "cortexTargetID",
+			"id": "launchTargetID",
 			"type": "command",
 			"command": "extension.commandvariable.remember",
       		"args": { "key": "lasttarget" }
