@@ -1,4 +1,6 @@
 #include <unity.h>
+#include <stdlib.h>
+#include "port_system.h"
 #include "port_led.h"
 
 void setUp(void)
@@ -31,7 +33,8 @@ void test_led(void)
 
 int main(void)
 {
+    port_system_init();
     UNITY_BEGIN();
     RUN_TEST(test_led);
-    return UNITY_END();
+    exit(UNITY_END());
 }

@@ -4,7 +4,7 @@
 
 /* HW dependent includes */
 #include "stm32f4xx.h"
-
+#include "stm32f4_system.h"
 
 // HW Nucleo-STM32F446RE:
 

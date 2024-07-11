@@ -1,6 +1,6 @@
 /**
  ******************************************************************************
- * @file           : port_system.h
+ * @file           : stm32f4_system.h
  * @brief          : Header for port_system.c file.
  ******************************************************************************
  * @attention
@@ -11,18 +11,10 @@
  ******************************************************************************
  */
 
-#ifndef PORT_SYSTEM_H_
-#define PORT_SYSTEM_H_
+#ifndef STM32F4_SYSTEM_H_
+#define STM32F4_SYSTEM_H_
 
-/* Includes del sistema */
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <sys/time.h>
+#define GPIO_MODE_OUT 0x01     /*!< GPIO as output */
+#define GPIO_PUPDR_NOPULL 0x00 /*!< GPIO no pull up or down */
 
-size_t port_system_init(void);
-uint32_t port_system_get_millis(void);
-void port_system_delay_ms(uint32_t ms);
-void port_system_delay_until_ms(uint32_t *t, uint32_t ms);
-
-#endif // PORT_SYSTEM_H_
+#endif /* STM32F4_SYSTEM_H_ */

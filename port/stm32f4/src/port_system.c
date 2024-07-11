@@ -2,6 +2,10 @@
 /* HW dependent includes */
 #include "stm32f4xx.h"
 
+#ifdef USE_SEMIHOSTING
+extern void initialise_monitor_handles(void);
+#endif
+
 //------------------------------------------------------
 // FILE-SPECIFIC DEFINITIONS
 //------------------------------------------------------
@@ -106,6 +110,11 @@ void SystemInit(void)
 
 uint32_t port_system_init()
 {
+
+#ifdef USE_SEMIHOSTING
+  initialise_monitor_handles();
+#endif
+
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   /* Configure Flash prefetch, Instruction cache, Data cache */
   /* Instruction cache enable */

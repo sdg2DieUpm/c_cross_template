@@ -17,9 +17,6 @@
 /* Includes del sistema */
 #include <stdint.h>
 
-#define GPIO_MODE_OUT 0x01       /*!< GPIO as output */
-#define GPIO_PUPDR_NOPULL 0x00 /*!< GPIO no pull up or down */
-
 /**
  * @brief Initializes the system.
 */
