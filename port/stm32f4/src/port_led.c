@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 /* HW independent includes */
+#include "port_system.h"
 #include "port_led.h"
 
 /* HW dependent includes */

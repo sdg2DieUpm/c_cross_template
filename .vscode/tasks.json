@@ -165,7 +165,7 @@
 			"command": "make",
 			"args": [
 				"-Cbuild/stm32f405rg/Debug", // PORTABILITY: change this to your platform
-				"${input:cortexTargetID}",
+				"${input:launchTargetID}",
 			],
 			"windows": {
 				"command": "mingw32-make"
