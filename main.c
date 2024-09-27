@@ -16,9 +16,6 @@
 #include "port_system.h"
 #include "port_led.h"
 
-/* Other includes */
-#include <fsm.h>
-
 #define BLINK_T_MS 2000 /*!< Blink LED period in ms */
 
 /**

@@ -9,8 +9,7 @@
 
 /* HW dependent includes */
 #include "stm32f4xx.h"
-#include "port_led.h"
-#include "port_system.h"
+#include "stm32f4_system.h"
 
 // HW Nucleo-STM32F446RE:
 #define LD2_PIN 5           /*!< GPIO pin of the LED2 in the Nucleo board */
