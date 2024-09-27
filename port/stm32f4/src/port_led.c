@@ -4,8 +4,12 @@
  * @brief Port layer for the LED emulation in the Nucleo STM32F4 platform.
  * @date 01-01-2024
  */
+
 /* Standard C includes */
 #include <stdio.h>
+
+/* HW independent includes */
+#include "port_led.h"
 
 /* HW dependent includes */
 #include "stm32f4xx.h"

@@ -23,7 +23,7 @@
 **
 ******************************************************************************/
 
-#ifndef USE_SEMIHOSTING
+#ifndef USE_SEMIHOSTING /* when semihosting is used, no syscalls are needed */
 
 /* Includes */
 #include <sys/stat.h>
@@ -184,4 +184,4 @@ int _execve(char *name, char **argv, char **env)
 	return -1;
 }
 
-#endif
+#endif /* USE_SEMIHOSTING */
