@@ -45,7 +45,7 @@
       "runToEntryPoint": "main",
       "type": "cortex-debug",
       "servertype": "qemu",
-      "serverpath": "../../../../../silvase/qemu_new/build/qemu-system-arm", // PORTABILITY: change this to your QEMU path
+      "serverpath": "../../../../../../qemu/build/qemu-system-arm", // PORTABILITY: change this to your QEMU path
       "cpu": "cortex-m4",
       "machine": "netduinoplus2",
       "device": "STM32F405RG", // PORTABILITY: change this to your platform
@@ -63,7 +63,51 @@
       "runToEntryPoint": "main",
       "type": "cortex-debug",
       "servertype": "qemu",
-      "serverpath": "../../../../../silvase/qemu_new/build/qemu-system-arm", // PORTABILITY: change this to your QEMU path
+      "serverpath": "../../../../../../qemu/build/qemu-system-arm", // PORTABILITY: change this to your QEMU path
+      "cpu": "cortex-m4",
+      "machine": "netduinoplus2",
+      "device": "STM32F405RG", // PORTABILITY: change this to your platform
+      "configFiles": [
+        "${workspaceFolder}/../../openocd/stm32f4x.cfg"
+      ],
+      "preLaunchTask": "cortex-debug: Clean and Build (stm32f405rg)",  // PORTABILITY: change this to your platform
+      "svdFile": "${workspaceFolder}/../../svd/STM32F405RG.svd", // PORTABILITY: change this to your platform
+    },
+    {
+      "name": "Debug (QTest)",
+      "cwd": "${workspaceRoot}",
+      "executable": "${workspaceFolder}/bin/stm32f405rg/Debug/${input:launchTargetID}.elf", // PORTABILITY: change this to your platform
+      "request": "launch",
+      "runToEntryPoint": "main",
+      "type": "cortex-debug",
+      "servertype": "qemu",
+      "serverpath": "../../../../../../qemu/build/qemu-system-arm", // PORTABILITY: change this to your QEMU path
+      "serverArgs": [
+          "-qtest",
+          "tcp:localhost:3333",
+      ],
+      "cpu": "cortex-m4",
+      "machine": "netduinoplus2",
+      "device": "STM32F405RG", // PORTABILITY: change this to your platform
+      "configFiles": [
+        "${workspaceFolder}/../../openocd/stm32f4x.cfg"
+      ],
+      "preLaunchTask": "cortex-debug: Build (stm32f405rg)", // PORTABILITY: change this to your platform
+      "svdFile": "${workspaceFolder}/../../svd/stm32f405.svd", // PORTABILITY: change this to your platform
+    },
+    {
+      "name": "Clean and Debug (QTest)",
+      "cwd": "${workspaceRoot}",
+      "executable": "${workspaceFolder}/bin/stm32f405rg/Debug/${input:launchTargetID}.elf", // PORTABILITY: change this to your platform
+      "request": "launch",
+      "runToEntryPoint": "main",
+      "type": "cortex-debug",
+      "servertype": "qemu",
+      "serverpath": "../../../../../../qemu/build/qemu-system-arm", // PORTABILITY: change this to your QEMU path
+      "serverArgs": [
+          "-qtest",
+          "tcp:localhost:3333",
+      ],
       "cpu": "cortex-m4",
       "machine": "netduinoplus2",
       "device": "STM32F405RG", // PORTABILITY: change this to your platform

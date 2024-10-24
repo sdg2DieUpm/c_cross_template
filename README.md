@@ -1,4 +1,4 @@
-# Proyect title
+# Project title
 
 This README serves as a template for the documentation of your project. You can use it as a guide to write your own documentation. At the end of the document you will find some information on the `project_template` repository.
 

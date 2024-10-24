@@ -2,6 +2,16 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+            "label": "Open TCP Socket",
+            "type": "shell",
+            "command": "nc",
+            "args": [
+                "-l",
+                "3333"
+            ],
+            "problemMatcher": [],
+        },
+		{
 			"label": "cortex-debug: Run CMake (stm32f446re)", // PORTABILITY: change this to your platform
 			"options": {
 				"cwd": "${workspaceRoot}"
