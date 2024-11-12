@@ -129,7 +129,7 @@
         "default": "main",
         "options": [
           "main",
-          "test_blink",
+          "example_blink",
           "test_led",
           "test_stm32f4"
         ]

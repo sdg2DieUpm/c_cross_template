@@ -121,5 +121,7 @@ IF(DEFINED QEMU_FLAGS)
         COMMENT "Emulating main")
 ENDIF()
 
-# Add tests TODO adaptar a la nueva estructura
+# Add tests
 ADD_SUBDIRECTORY(test)
+# Add examples
+ADD_SUBDIRECTORY(example)
