@@ -42,7 +42,7 @@ PROJECT(${PROJECT_NAME} C ASM)
 SET(CMAKE_C_STANDARD 11)
 
 # Add platform-agnostic flags
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter")
 # Build type-specific flags
 SET(CMAKE_C_FLAGS_DEBUG "-g -O0")
 SET(CMAKE_C_FLAGS_RELEASE "-O3")
