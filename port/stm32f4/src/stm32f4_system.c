@@ -9,6 +9,16 @@
 #include "port_system.h"
 #include "stm32f4xx.h"
 
+#ifdef USE_HAL
+#include "stm32f4xx_hal.h"
+
+// Adapt the HAL tick functions to use the port system timer
+uint32_t HAL_GetTick(void)
+{
+  return port_system_get_millis();
+}
+#endif
+
 #ifdef USE_SEMIHOSTING
 extern void initialise_monitor_handles(void);
 #endif
@@ -16,7 +26,9 @@ extern void initialise_monitor_handles(void);
 //------------------------------------------------------
 // FILE-SPECIFIC DEFINITIONS
 //------------------------------------------------------
+#ifndef USE_HAL
 #define HSI_VALUE ((uint32_t)16000000) /*!< Value of the Internal oscillator in Hz */
+#endif                                 /* USE_HAL */
 /* Timer configuration */
 #define RCC_HSI_CALIBRATION_DEFAULT 0x10U            /*!< Default HSI calibration trimming value */
 #define TICK_FREQ_1KHZ 1U                            /*!< Freqency in kHz of the System tick */
@@ -119,6 +131,9 @@ uint32_t port_system_init()
   initialise_monitor_handles();
 #endif
 
+#ifdef USE_HAL
+  HAL_Init();
+#else
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   /* Configure Flash prefetch, Instruction cache, Data cache */
   /* Instruction cache enable */
@@ -145,8 +160,9 @@ uint32_t port_system_init()
   RCC->APB1ENR |= RCC_APB1ENR_PWREN; /* PWREN: Power interface clock enable */
 
   /* Configure the system clock */
-  system_clock_config();
+#endif
 
+  system_clock_config();
   return 0;
 }
 
