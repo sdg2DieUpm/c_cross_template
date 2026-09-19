@@ -54,6 +54,9 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${PLATFORM}/$
 IF (USE_SEMIHOSTING)
     add_compile_definitions(USE_SEMIHOSTING)
 ENDIF()
+IF (USE_HAL)
+    add_compile_definitions(USE_HAL)
+ENDIF()
 
 # Find source and include files of the project
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/common)  # load project library configuration (common)
